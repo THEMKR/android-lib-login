@@ -1,3 +1,3 @@
 # MKR-ANDROID-LOGIN-LIB
 
-implementation 'com.github.MKR-WORLD:MKR-ANDROID-LOGIN-LIB:1.0'
+implementation 'com.github.MKR-WORLD:MKR-ANDROID-LIB-LOGIN:1.0'
