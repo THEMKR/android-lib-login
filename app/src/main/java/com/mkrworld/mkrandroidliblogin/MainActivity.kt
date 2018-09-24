@@ -1,4 +1,4 @@
-package com.mkrworld.mkrandroidloginlib
+package com.mkrworld.mkrandroidliblogin
 
 import android.app.Activity
 import android.os.Bundle
