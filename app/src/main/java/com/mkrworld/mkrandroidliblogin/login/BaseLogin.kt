@@ -1,7 +1,8 @@
-package com.mkrworld.mkrandroidliblogin
+package com.mkrworld.mkrandroidliblogin.login
 
 import android.app.Activity
 import android.content.Intent
+import com.mkrworld.mkrandroidliblogin.callback.OnLoginListener
 
 /**
  * Base class for All Login Activity
@@ -9,30 +10,27 @@ import android.content.Intent
 internal abstract class BaseLogin {
 
     var activity: Activity
-    var loginPermissions: List<String>
-    var onLoginListener: OnLoginListener
+    var onLoginListener: OnLoginListener? = null
 
     /**
      * Constructor
      * @param activity
-     * @param loginPermissions
      * @param onLoginListener
      */
-    constructor(activity: Activity, loginPermissions: List<String>, onLoginListener: OnLoginListener) {
+    constructor(activity: Activity, onLoginListener: OnLoginListener?) {
         this.activity = activity
-        this.loginPermissions = loginPermissions
         this.onLoginListener = onLoginListener
     }
 
     /**
      * Method to start Login Process
      */
-    abstract fun login()
+    abstract fun startLogin()
 
     /**
-     * Method to get the current Access Token
+     * Method to refresh the current Access Token
      */
-    abstract fun getAccessToken()
+    abstract fun refreshAccessToken()
 
     /**
      * Method to return the Result By the 3rd Party Lib

@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">MKR-ANDROID-LOGIN-LIB</string>
+
+    <!-- FB -->
+    <string name="facebook_app_id">186117352122372</string>
 </resources>

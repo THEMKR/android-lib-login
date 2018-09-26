@@ -1,5 +1,11 @@
-package com.mkrworld.mkrandroidliblogin
+package com.mkrworld.mkrandroidliblogin.enums
 
+/**
+ * Contain the list of all the supported startLogin environment.
+ * @param NAN NO LOGIN
+ * @param FACEBOOK When user initiate startLogin via Facebook
+ * @param GAMIL When user initiate startLogin via G-Mail
+ */
 enum class LoginType {
     NAN, FACEBOOK, G_MAIL;
 

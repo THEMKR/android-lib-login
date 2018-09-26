@@ -1,4 +1,4 @@
-package com.mkrworld.mkrandroidliblogin
+package com.mkrworld.mkrandroidliblogin.login.facebook
 
 import android.app.Activity
 import android.content.Intent
@@ -7,21 +7,34 @@ import android.os.Bundle
 import com.facebook.*
 import com.facebook.login.LoginResult
 import com.facebook.login.widget.LoginButton
+import com.mkrworld.mkrandroidliblogin.callback.OnLoginListener
+import com.mkrworld.mkrandroidliblogin.enums.LoginType
+import com.mkrworld.mkrandroidliblogin.login.BaseLogin
+import com.mkrworld.mkrandroidliblogin.utils.Constants
 import org.json.JSONObject
 
 internal class FacebookLogin : BaseLogin {
     private var callbackManager: CallbackManager? = null
     private var fields: String
+    private var loginPermissions: List<String>
 
 
     /**
      * Constructor
      * @param activity
-     * @param loginPermissions
      * @param onLoginListener
+     * @param loginPermissions
+     * @param fieldsList
      */
-    constructor(activity: Activity, loginPermissions: List<String>, onLoginListener: OnLoginListener, fields: String) : super(activity, loginPermissions, onLoginListener) {
-        this.fields = fields
+    constructor(activity: Activity, onLoginListener: OnLoginListener?, loginPermissions: List<String>, fieldsList: List<String>) : super(activity, onLoginListener) {
+        this.loginPermissions = loginPermissions
+        val builder = StringBuilder("")
+        if (fieldsList.isNotEmpty()) {
+            for (field in fieldsList) {
+                builder.append("$field,")
+            }
+        }
+        this.fields = builder.substring(0, builder.length - 1)
     }
 
     /**
@@ -37,7 +50,7 @@ internal class FacebookLogin : BaseLogin {
             } else null
         }
 
-    override fun login() {
+    override fun startLogin() {
         val loginButton = LoginButton(activity)
         loginButton.setReadPermissions(loginPermissions)
         callbackManager = CallbackManager.Factory.create()
@@ -47,9 +60,10 @@ internal class FacebookLogin : BaseLogin {
                     val graphRequest: GraphRequest = GraphRequest.newMeRequest(accessToken, object : GraphRequest.GraphJSONObjectCallback {
                         override fun onCompleted(json: JSONObject?, response: GraphResponse?) {
                             if (json != null && response != null) {
-                                onLoginListener.onLoginSuccess(json)
+
                             } else {
-                                onLoginListener.onLoginFailed()
+                                val message = response?.error?.errorMessage ?: Constants.ERROR_MESSAGE_MISCELLANEOUS
+                                onLoginListener?.onLoginFailed(Exception(message), LoginType.FACEBOOK)
                             }
                         }
                     })
@@ -61,11 +75,11 @@ internal class FacebookLogin : BaseLogin {
             }
 
             override fun onCancel() {
-                onLoginListener.onLoginFailed()
+                onLoginListener?.onLoginFailed(Exception(Constants.ERROR_MESSAGE_LOGIN_CANCEL), LoginType.FACEBOOK)
             }
 
             override fun onError(error: FacebookException) {
-                onLoginListener.onLoginError(error.message ?: error.localizedMessage ?: Constants.MISCELLANEOUS_ERROR_MESSAGE)
+                onLoginListener?.onLoginFailed(error, LoginType.FACEBOOK)
             }
         })
         loginButton.performClick()
@@ -75,7 +89,7 @@ internal class FacebookLogin : BaseLogin {
         callbackManager?.onActivityResult(requestCode, resultCode, data)
     }
 
-    override fun getAccessToken() {
+    override fun refreshAccessToken() {
         if (accessToken == null) {
             AccessToken.refreshCurrentAccessTokenAsync()
             object : AsyncTask<Void, Void, Boolean>() {
@@ -99,14 +113,14 @@ internal class FacebookLogin : BaseLogin {
                 override fun onPostExecute(aBoolean: Boolean?) {
                     super.onPostExecute(aBoolean)
                     if (aBoolean != null && aBoolean) {
-                        onLoginListener.onLoginAccessToken(accessToken!!, LoginType.FACEBOOK)
+                        onLoginListener?.onFindAccessTokenSuccess(accessToken, LoginType.FACEBOOK)
                     } else {
-                        onLoginListener.onLoginAccessTokenFailed(LoginType.FACEBOOK)
+                        onLoginListener?.onFindAccessTokenFailed(Exception(Constants.ERROR_MESSAGE_UNABLE_TO_GET_ACCESS_TOKEN), LoginType.FACEBOOK)
                     }
                 }
             }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR)
         } else {
-            onLoginListener.onLoginAccessToken(accessToken!!, LoginType.FACEBOOK)
+            onLoginListener?.onFindAccessTokenSuccess(accessToken, LoginType.FACEBOOK)
         }
     }
 }
