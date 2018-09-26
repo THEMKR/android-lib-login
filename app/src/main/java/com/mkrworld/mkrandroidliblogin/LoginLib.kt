@@ -121,8 +121,12 @@ class LoginLib {
 
         /**
          * Method to build the MKR Login
+         * @throws Exception Caller must handel the exception
          */
         fun build(): LoginLib {
+            if (!LibPrefData.getBoolean(activity, LibPrefData.Key.IS_LIB_INITIALIZE)) {
+                throw Exception(Constants.ERROR_MESSAGE_LOGIN_LIB_NOT_INIT)
+            }
             return LoginLib(getLoginObject() ?: throw Exception(Constants.ERROR_MESSAGE_LOGIN_TYPE_NOT_SET))
         }
 

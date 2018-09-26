@@ -36,7 +36,7 @@
 
         <provider
             android:name="com.facebook.FacebookContentProvider"
-            android:authorities="com.facebook.app.FacebookContentProvider.com.mkrworld.wordrush"
+            android:authorities="com.facebook.app.FacebookContentProvider.com.mkrworld.mkrandroidliblogin"
             android:exported="true" />
     </application>
 

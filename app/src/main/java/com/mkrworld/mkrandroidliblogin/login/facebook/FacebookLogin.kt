@@ -33,8 +33,9 @@ internal class FacebookLogin : BaseLogin {
             for (field in fieldsList) {
                 builder.append("$field,")
             }
+            builder.deleteCharAt(builder.length - 1)
         }
-        this.fields = builder.substring(0, builder.length - 1)
+        this.fields = builder.toString()
     }
 
     /**
