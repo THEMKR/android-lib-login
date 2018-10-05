@@ -7,7 +7,7 @@ package com.mkrworld.mkrandroidliblogin.enums
  * @param GAMIL When user initiate startLogin via G-Mail
  */
 enum class LoginType {
-    NAN, FACEBOOK, G_MAIL;
+    NAN, FACEBOOK, GOOGLE;
 
     companion object {
         /**

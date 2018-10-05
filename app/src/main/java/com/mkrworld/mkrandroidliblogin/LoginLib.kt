@@ -8,6 +8,7 @@ import com.mkrworld.mkrandroidliblogin.callback.OnLoginListener
 import com.mkrworld.mkrandroidliblogin.enums.LoginType
 import com.mkrworld.mkrandroidliblogin.login.BaseLogin
 import com.mkrworld.mkrandroidliblogin.login.FacebookLogin
+import com.mkrworld.mkrandroidliblogin.login.GoogleLogin
 import com.mkrworld.mkrandroidliblogin.utils.Constants
 import com.mkrworld.mkrandroidliblogin.utils.LibPrefData
 
@@ -91,8 +92,8 @@ class LoginLib {
         private var activity: Activity
         private var loginType: LoginType = LoginType.NAN
         private var loginListener: OnLoginListener? = null
-        private var loginInfoList: ArrayList<String>
-        private var loginPermissionList: ArrayList<String>
+        private var infoList: ArrayList<String>
+        private var permissionList: ArrayList<String>
 
         /**
          * Constructor
@@ -100,8 +101,8 @@ class LoginLib {
          */
         constructor(activity: Activity) {
             this.activity = activity
-            loginInfoList = ArrayList()
-            loginPermissionList = ArrayList()
+            infoList = ArrayList()
+            permissionList = ArrayList()
         }
 
         /**
@@ -127,9 +128,9 @@ class LoginLib {
          * Method to set the Login Permission Requested by the Client
          * @param loginPermissionList
          */
-        fun setLoginPermissionList(loginPermissionList: List<String>): Builder {
-            this.loginPermissionList.clear()
-            this.loginPermissionList.addAll(loginPermissionList)
+        fun setPermissionList(loginPermissionList: List<String>): Builder {
+            this.permissionList.clear()
+            this.permissionList.addAll(loginPermissionList)
             return this
         }
 
@@ -137,9 +138,9 @@ class LoginLib {
          * Method to set the List of Info requested by the client
          * @param loginInfoList
          */
-        fun setLoginInfoList(loginInfoList: List<String>): Builder {
-            this.loginInfoList.clear()
-            this.loginInfoList.addAll(loginInfoList)
+        fun setInfoList(loginInfoList: List<String>): Builder {
+            this.infoList.clear()
+            this.infoList.addAll(loginInfoList)
             return this
         }
 
@@ -161,7 +162,10 @@ class LoginLib {
         private fun getLoginObject(): BaseLogin? {
             when (loginType) {
                 LoginType.FACEBOOK -> {
-                    return FacebookLogin(activity, loginListener, loginPermissionList, loginInfoList)
+                    return FacebookLogin(activity, loginListener, permissionList, infoList)
+                }
+                LoginType.GOOGLE -> {
+                    return GoogleLogin(activity, loginListener, permissionList)
                 }
             }
             return null

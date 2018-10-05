@@ -8,8 +8,11 @@ import android.util.Base64
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions.SCOPE_OPEN_ID
 import com.mkrworld.mkrandroidliblogin.LoginLib
 import com.mkrworld.mkrandroidliblogin.R
+import com.mkrworld.mkrandroidliblogin.callback.OnLoginListener
+import com.mkrworld.mkrandroidliblogin.dto.LoginData
 import com.mkrworld.mkrandroidliblogin.enums.LoginType
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
@@ -29,7 +32,7 @@ class LoginActivity : Activity(), View.OnClickListener {
         setContentView(R.layout.activity_login)
         findViewById<View>(R.id.activity_login_button_facebook).setOnClickListener(this)
         findViewById<View>(R.id.activity_login_button_gmail).setOnClickListener(this)
-        //findKeyHash()
+        findKeyHash()
     }
 
     override fun onClick(view: View?) {
@@ -37,7 +40,23 @@ class LoginActivity : Activity(), View.OnClickListener {
             R.id.activity_login_button_facebook -> {
                 LoginLib.init(application)
                 try {
-                    loginLib = LoginLib.Builder(this).setLoginType(LoginType.FACEBOOK).setLoginPermissionList(Arrays.asList("public_profile", "email")).setLoginInfoList(Arrays.asList("id", "name", "email")).build()
+                    loginLib = LoginLib.Builder(this).setLoginType(LoginType.FACEBOOK).setPermissionList(Arrays.asList("public_profile", "email")).setInfoList(Arrays.asList("id", "name", "email")).setLoginListener(object : OnLoginListener {
+                        override fun onLoginSuccessful(loginData: LoginData, loginType: LoginType) {
+                            Log.e("MKR", "onLoginSuccessful() : $loginData  ${loginType.name}")
+                        }
+
+                        override fun onLoginFailed(e: Exception?, loginType: LoginType) {
+                            Log.e("MKR", "onLoginFailed() : ${e?.message}  ${loginType.name}")
+                        }
+
+                        override fun onFindAccessTokenSuccess(token: Any?, loginType: LoginType) {
+                            Log.e("MKR", "onFindAccessTokenSuccess() : $token  ${loginType.name}")
+                        }
+
+                        override fun onFindAccessTokenFailed(e: Exception?, loginType: LoginType) {
+                            Log.e("MKR", "onFindAccessTokenFailed() : ${e?.message}  ${loginType.name}")
+                        }
+                    }).build()
                     loginLib?.startLogin()
                 } catch (e: Exception) {
                     Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
@@ -45,7 +64,23 @@ class LoginActivity : Activity(), View.OnClickListener {
             }
             R.id.activity_login_button_gmail -> {
                 try {
-                    loginLib = LoginLib.Builder(this).setLoginType(LoginType.FACEBOOK).setLoginPermissionList(Arrays.asList("public_profile", "email")).setLoginInfoList(Arrays.asList("id", "name", "email")).build()
+                    loginLib = LoginLib.Builder(this).setLoginType(LoginType.GOOGLE).setPermissionList(Arrays.asList("profile", "email", "openid")).setLoginListener(object : OnLoginListener {
+                        override fun onLoginSuccessful(loginData: LoginData, loginType: LoginType) {
+                            Log.e("MKR", "onLoginSuccessful() : $loginData  ${loginType.name}")
+                        }
+
+                        override fun onLoginFailed(e: Exception?, loginType: LoginType) {
+                            Log.e("MKR", "onLoginFailed() : ${e?.message}  ${loginType.name}")
+                        }
+
+                        override fun onFindAccessTokenSuccess(token: Any?, loginType: LoginType) {
+                            Log.e("MKR", "onFindAccessTokenSuccess() : $token  ${loginType.name}")
+                        }
+
+                        override fun onFindAccessTokenFailed(e: Exception?, loginType: LoginType) {
+                            Log.e("MKR", "onFindAccessTokenFailed() : ${e?.message}  ${loginType.name}")
+                        }
+                    }).build()
                     loginLib?.startLogin()
                 } catch (e: Exception) {
                     Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
