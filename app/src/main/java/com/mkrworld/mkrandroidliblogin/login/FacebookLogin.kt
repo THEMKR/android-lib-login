@@ -1,4 +1,4 @@
-package com.mkrworld.mkrandroidliblogin.login.facebook
+package com.mkrworld.mkrandroidliblogin.login
 
 import android.app.Activity
 import android.content.Intent
@@ -8,8 +8,8 @@ import com.facebook.*
 import com.facebook.login.LoginResult
 import com.facebook.login.widget.LoginButton
 import com.mkrworld.mkrandroidliblogin.callback.OnLoginListener
+import com.mkrworld.mkrandroidliblogin.dto.LoginData
 import com.mkrworld.mkrandroidliblogin.enums.LoginType
-import com.mkrworld.mkrandroidliblogin.login.BaseLogin
 import com.mkrworld.mkrandroidliblogin.utils.Constants
 import org.json.JSONObject
 
@@ -17,7 +17,6 @@ internal class FacebookLogin : BaseLogin {
     private var callbackManager: CallbackManager? = null
     private var fields: String
     private var loginPermissions: List<String>
-
 
     /**
      * Constructor
@@ -61,7 +60,12 @@ internal class FacebookLogin : BaseLogin {
                     val graphRequest: GraphRequest = GraphRequest.newMeRequest(accessToken, object : GraphRequest.GraphJSONObjectCallback {
                         override fun onCompleted(json: JSONObject?, response: GraphResponse?) {
                             if (json != null && response != null) {
-
+                                val loginData = LoginData()
+                                loginData.sessionToken = json.optString("id")
+                                loginData.name = json.optString("name")
+                                loginData.email = json.optString("email")
+                                loginData.loginType = LoginType.FACEBOOK
+                                onLoginListener?.onLoginSuccessful(loginData, LoginType.FACEBOOK)
                             } else {
                                 val message = response?.error?.errorMessage ?: Constants.ERROR_MESSAGE_MISCELLANEOUS
                                 onLoginListener?.onLoginFailed(Exception(message), LoginType.FACEBOOK)

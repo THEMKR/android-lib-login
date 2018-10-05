@@ -8,7 +8,7 @@ class LoginData {
     /**
      * Unique Id of user define by Login Env
      */
-    var id: String = ""
+    var sessionToken: String = ""
 
     /**
      * User Name
