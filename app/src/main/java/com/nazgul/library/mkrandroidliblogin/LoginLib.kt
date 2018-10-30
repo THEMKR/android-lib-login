@@ -1,16 +1,16 @@
-package com.mkrworld.mkrandroidliblogin
+package com.nazgul.library.mkrandroidliblogin
 
 import android.app.Activity
 import android.app.Application
 import android.content.Intent
 import com.facebook.FacebookSdk
-import com.mkrworld.mkrandroidliblogin.callback.OnLoginListener
-import com.mkrworld.mkrandroidliblogin.enums.LoginType
-import com.mkrworld.mkrandroidliblogin.login.BaseLogin
-import com.mkrworld.mkrandroidliblogin.login.FacebookLogin
-import com.mkrworld.mkrandroidliblogin.login.GoogleLogin
-import com.mkrworld.mkrandroidliblogin.utils.Constants
-import com.mkrworld.mkrandroidliblogin.utils.LibPrefData
+import com.nazgul.library.mkrandroidliblogin.callback.OnLoginListener
+import com.nazgul.library.mkrandroidliblogin.enums.LoginType
+import com.nazgul.library.mkrandroidliblogin.login.BaseLogin
+import com.nazgul.library.mkrandroidliblogin.login.FacebookLogin
+import com.nazgul.library.mkrandroidliblogin.login.GoogleLogin
+import com.nazgul.library.mkrandroidliblogin.utils.Constants
+import com.nazgul.library.mkrandroidliblogin.utils.LibPrefData
 
 /**
  * Class to control the startLogin process. Plz called the init Method from Application to initialized this Lib

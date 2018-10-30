@@ -1,8 +1,8 @@
-package com.mkrworld.mkrandroidliblogin.login
+package com.nazgul.library.mkrandroidliblogin.login
 
 import android.app.Activity
 import android.content.Intent
-import com.mkrworld.mkrandroidliblogin.callback.OnLoginListener
+import com.nazgul.library.mkrandroidliblogin.callback.OnLoginListener
 
 /**
  * Base class for All Login Activity

@@ -1,4 +1,4 @@
-package com.mkrworld.mkrandroidliblogin.utils
+package com.nazgul.library.mkrandroidliblogin.utils
 
 import android.content.Context
 import android.content.SharedPreferences

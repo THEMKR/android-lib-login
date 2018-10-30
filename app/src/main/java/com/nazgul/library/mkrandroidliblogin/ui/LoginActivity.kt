@@ -1,4 +1,4 @@
-package com.mkrworld.mkrandroidliblogin.ui
+package com.nazgul.library.mkrandroidliblogin.ui
 
 import android.app.Activity
 import android.content.Intent
@@ -8,12 +8,11 @@ import android.util.Base64
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions.SCOPE_OPEN_ID
-import com.mkrworld.mkrandroidliblogin.LoginLib
-import com.mkrworld.mkrandroidliblogin.R
-import com.mkrworld.mkrandroidliblogin.callback.OnLoginListener
-import com.mkrworld.mkrandroidliblogin.dto.LoginData
-import com.mkrworld.mkrandroidliblogin.enums.LoginType
+import com.nazgul.library.mkrandroidliblogin.LoginLib
+import com.nazgul.library.mkrandroidliblogin.R
+import com.nazgul.library.mkrandroidliblogin.callback.OnLoginListener
+import com.nazgul.library.mkrandroidliblogin.dto.LoginData
+import com.nazgul.library.mkrandroidliblogin.enums.LoginType
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 import java.util.*

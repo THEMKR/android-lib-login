@@ -1,8 +1,7 @@
-package com.mkrworld.mkrandroidliblogin.login
+package com.nazgul.library.mkrandroidliblogin.login
 
 import android.app.Activity
 import android.content.Intent
-import android.support.annotation.NonNull
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -11,10 +10,10 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.common.api.Scope
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
-import com.mkrworld.mkrandroidliblogin.callback.OnLoginListener
-import com.mkrworld.mkrandroidliblogin.dto.LoginData
-import com.mkrworld.mkrandroidliblogin.enums.LoginType
-import com.mkrworld.mkrandroidliblogin.utils.Constants
+import com.nazgul.library.mkrandroidliblogin.callback.OnLoginListener
+import com.nazgul.library.mkrandroidliblogin.dto.LoginData
+import com.nazgul.library.mkrandroidliblogin.enums.LoginType
+import com.nazgul.library.mkrandroidliblogin.utils.Constants
 
 
 internal class GoogleLogin : BaseLogin {

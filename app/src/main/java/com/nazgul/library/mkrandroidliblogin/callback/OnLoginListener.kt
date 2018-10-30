@@ -1,7 +1,7 @@
-package com.mkrworld.mkrandroidliblogin.callback
+package com.nazgul.library.mkrandroidliblogin.callback
 
-import com.mkrworld.mkrandroidliblogin.dto.LoginData
-import com.mkrworld.mkrandroidliblogin.enums.LoginType
+import com.nazgul.library.mkrandroidliblogin.dto.LoginData
+import com.nazgul.library.mkrandroidliblogin.enums.LoginType
 
 /**
  * Callback used to know the status of startLogin process

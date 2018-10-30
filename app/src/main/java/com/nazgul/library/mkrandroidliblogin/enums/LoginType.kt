@@ -1,4 +1,4 @@
-package com.mkrworld.mkrandroidliblogin.enums
+package com.nazgul.library.mkrandroidliblogin.enums
 
 /**
  * Contain the list of all the supported startLogin environment.
