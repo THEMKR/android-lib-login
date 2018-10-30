@@ -1,6 +1,6 @@
-package com.nazgul.library.mkrandroidliblogin.dto
+package com.nazgul.library.login.dto
 
-import com.nazgul.library.mkrandroidliblogin.enums.LoginType
+import com.nazgul.library.login.enums.LoginType
 
 class LoginData {
 

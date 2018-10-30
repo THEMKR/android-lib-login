@@ -1,4 +1,4 @@
-package com.nazgul.library.mkrandroidliblogin.utils
+package com.nazgul.library.login.utils
 
 internal class Constants {
     companion object {

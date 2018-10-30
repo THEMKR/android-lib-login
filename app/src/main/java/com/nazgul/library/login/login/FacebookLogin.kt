@@ -1,4 +1,4 @@
-package com.nazgul.library.mkrandroidliblogin.login
+package com.nazgul.library.login.login
 
 import android.app.Activity
 import android.content.Intent
@@ -8,10 +8,10 @@ import com.facebook.*
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import com.facebook.login.widget.LoginButton
-import com.nazgul.library.mkrandroidliblogin.callback.OnLoginListener
-import com.nazgul.library.mkrandroidliblogin.dto.LoginData
-import com.nazgul.library.mkrandroidliblogin.enums.LoginType
-import com.nazgul.library.mkrandroidliblogin.utils.Constants
+import com.nazgul.library.login.callback.OnLoginListener
+import com.nazgul.library.login.dto.LoginData
+import com.nazgul.library.login.enums.LoginType
+import com.nazgul.library.login.utils.Constants
 import org.json.JSONObject
 
 internal class FacebookLogin : BaseLogin {

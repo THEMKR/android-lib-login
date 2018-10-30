@@ -1,4 +1,4 @@
-package com.nazgul.library.mkrandroidliblogin.login
+package com.nazgul.library.login.login
 
 import android.app.Activity
 import android.content.Intent
@@ -10,10 +10,10 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.common.api.Scope
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
-import com.nazgul.library.mkrandroidliblogin.callback.OnLoginListener
-import com.nazgul.library.mkrandroidliblogin.dto.LoginData
-import com.nazgul.library.mkrandroidliblogin.enums.LoginType
-import com.nazgul.library.mkrandroidliblogin.utils.Constants
+import com.nazgul.library.login.callback.OnLoginListener
+import com.nazgul.library.login.dto.LoginData
+import com.nazgul.library.login.enums.LoginType
+import com.nazgul.library.login.utils.Constants
 
 
 internal class GoogleLogin : BaseLogin {
