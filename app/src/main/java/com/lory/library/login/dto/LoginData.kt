@@ -1,6 +1,6 @@
-package com.nazgul.library.login.dto
+package com.lory.library.login.dto
 
-import com.nazgul.library.login.enums.LoginType
+import com.lory.library.login.enums.LoginType
 
 class LoginData {
 

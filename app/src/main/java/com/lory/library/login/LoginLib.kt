@@ -1,16 +1,16 @@
-package com.nazgul.library.login
+package com.lory.library.login
 
 import android.app.Activity
 import android.app.Application
 import android.content.Intent
 import com.facebook.FacebookSdk
-import com.nazgul.library.login.callback.OnLoginListener
-import com.nazgul.library.login.enums.LoginType
-import com.nazgul.library.login.login.BaseLogin
-import com.nazgul.library.login.login.FacebookLogin
-import com.nazgul.library.login.login.GoogleLogin
-import com.nazgul.library.login.utils.Constants
-import com.nazgul.library.login.utils.LibPrefData
+import com.lory.library.login.callback.OnLoginListener
+import com.lory.library.login.enums.LoginType
+import com.lory.library.login.login.BaseLogin
+import com.lory.library.login.login.FacebookLogin
+import com.lory.library.login.login.GoogleLogin
+import com.lory.library.login.utils.Constants
+import com.lory.library.login.utils.LibPrefData
 
 /**
  * Class to control the startLogin process. Plz called the init Method from Application to initialized this Lib

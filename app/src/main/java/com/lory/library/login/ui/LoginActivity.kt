@@ -1,4 +1,4 @@
-package com.nazgul.library.login.ui
+package com.lory.library.login.ui
 
 import android.app.Activity
 import android.content.Intent
@@ -8,11 +8,11 @@ import android.util.Base64
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import com.nazgul.library.login.LoginLib
-import com.nazgul.library.login.R
-import com.nazgul.library.login.callback.OnLoginListener
-import com.nazgul.library.login.dto.LoginData
-import com.nazgul.library.login.enums.LoginType
+import com.lory.library.login.LoginLib
+import com.lory.library.login.R
+import com.lory.library.login.callback.OnLoginListener
+import com.lory.library.login.dto.LoginData
+import com.lory.library.login.enums.LoginType
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 import java.util.*

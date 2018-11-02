@@ -1,4 +1,4 @@
-package com.nazgul.library.login.enums
+package com.lory.library.login.enums
 
 /**
  * Contain the list of all the supported startLogin environment.

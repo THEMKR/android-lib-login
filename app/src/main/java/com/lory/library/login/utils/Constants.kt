@@ -1,4 +1,4 @@
-package com.nazgul.library.login.utils
+package com.lory.library.login.utils
 
 internal class Constants {
     companion object {

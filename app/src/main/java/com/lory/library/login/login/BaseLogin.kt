@@ -1,8 +1,8 @@
-package com.nazgul.library.login.login
+package com.lory.library.login.login
 
 import android.app.Activity
 import android.content.Intent
-import com.nazgul.library.login.callback.OnLoginListener
+import com.lory.library.login.callback.OnLoginListener
 
 /**
  * Base class for All Login Activity

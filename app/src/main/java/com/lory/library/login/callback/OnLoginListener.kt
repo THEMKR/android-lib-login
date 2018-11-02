@@ -1,7 +1,7 @@
-package com.nazgul.library.login.callback
+package com.lory.library.login.callback
 
-import com.nazgul.library.login.dto.LoginData
-import com.nazgul.library.login.enums.LoginType
+import com.lory.library.login.dto.LoginData
+import com.lory.library.login.enums.LoginType
 
 /**
  * Callback used to know the status of startLogin process

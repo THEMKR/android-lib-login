@@ -1,4 +1,4 @@
-package com.nazgul.library.login.utils
+package com.lory.library.login.utils
 
 import android.content.Context
 import android.content.SharedPreferences
