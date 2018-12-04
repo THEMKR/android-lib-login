@@ -7,8 +7,6 @@ import com.facebook.FacebookSdk
 import com.lory.library.login.callback.OnLoginListener
 import com.lory.library.login.enums.LoginType
 import com.lory.library.login.login.BaseLogin
-import com.lory.library.login.login.FacebookLogin
-import com.lory.library.login.login.GoogleLogin
 import com.lory.library.login.login.LoginControllerFactory
 import com.lory.library.login.utils.Constants
 import com.lory.library.login.utils.PrefData

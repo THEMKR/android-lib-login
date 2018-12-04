@@ -35,3 +35,12 @@
 		implementation 'com.lory.library:login:1.0.0'
         implementation 'com.facebook.android:facebook-login:4.35.0'
         implementation 'com.google.android.gms:play-services-auth:15.0.1'
+        
+        
+#   USE
+            val builder = LoginLib.Builder(Activity)
+            builder.setLoginType(LoginType.<type>)
+            builder.setLoginListener(com.lory.library.login.callback.OnLoginListener)
+            builder.setPermissionList(ArrayList<String> permissionList)
+            loginLib = builder.build()
+            loginLib?.startLogin()    
