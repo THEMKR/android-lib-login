@@ -17,7 +17,8 @@
         <activity
             android:name=".ui.LoginActivity"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -41,5 +42,4 @@
             android:authorities="com.facebook.app.FacebookContentProvider.com.lory.library.login"
             android:exported="true" />
     </application>
-
 </manifest>

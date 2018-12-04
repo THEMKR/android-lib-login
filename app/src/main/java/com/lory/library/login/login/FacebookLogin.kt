@@ -67,18 +67,10 @@ internal class FacebookLogin : BaseLogin {
      * @param activity
      * @param onLoginListener
      * @param permissionList
-     * @param infoList
      */
-    constructor(activity: Activity, onLoginListener: OnLoginListener?, permissionList: List<String>, infoList: List<String>) : super(activity, onLoginListener) {
+    constructor(activity: Activity, onLoginListener: OnLoginListener?, permissionList: List<String>) : super(activity, onLoginListener) {
         this.permissionList = permissionList
-        val builder = StringBuilder("")
-        if (infoList.isNotEmpty()) {
-            for (field in infoList) {
-                builder.append("$field,")
-            }
-            builder.deleteCharAt(builder.length - 1)
-        }
-        this.infoList = builder.toString()
+        this.infoList = "id, name, email"
     }
 
     override fun startLogin() {

@@ -7,7 +7,7 @@ import com.lory.library.login.callback.OnLoginListener
 /**
  * Base class for All Login Activity
  */
-internal abstract class BaseLogin {
+abstract class BaseLogin {
 
     var activity: Activity
     var onLoginListener: OnLoginListener? = null

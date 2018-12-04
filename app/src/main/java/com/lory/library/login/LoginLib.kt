@@ -9,14 +9,54 @@ import com.lory.library.login.enums.LoginType
 import com.lory.library.login.login.BaseLogin
 import com.lory.library.login.login.FacebookLogin
 import com.lory.library.login.login.GoogleLogin
+import com.lory.library.login.login.LoginControllerFactory
 import com.lory.library.login.utils.Constants
-import com.lory.library.login.utils.LibPrefData
+import com.lory.library.login.utils.PrefData
 
 /**
  * Class to control the startLogin process. Plz called the init Method from Application to initialized this Lib
  */
 class LoginLib {
     companion object {
+        /**
+         * In Result Intent this Key contain the Login Data if login become successful
+         */
+        const val EXTRA_LOGIN_DATA = "EXTRA_LOGIN_DATA"
+
+        /**
+         * In Result Intent this Key contain the Refreshed Access Token
+         */
+        const val EXTRA_REFRESHED_ACCESS_TOKEN = "EXTRA_REFRESHED_ACCESS_TOKEN"
+
+        /**
+         * In Result Intent this Key contain the Error Message
+         */
+        const val EXTRA_ERROR_MESSAGE = "EXTRA_ERROR_MESSAGE"
+
+        /**
+         * In Request Intent this Key contain the ArratList<String> of permission required by the caller App
+         */
+        const val EXTRA_PERMISSION_ARRAY_LIST = "EXTRA_PERMISSION_ARRAY_LIST"
+
+        /**
+         * In Request Intent this Key contain the If of LoginType. From which user initiate the Login process
+         */
+        const val EXTRA_LOGIN_PROVIDER = "EXTRA_REQUEST_TYPE"
+
+        /**
+         * In Request Intent this Key contain the Type of Action taken by user (LOGIN/REFRESH_TOKEN)
+         */
+        const val EXTRA_REQUEST_TYPE = "EXTRA_REQUEST_TYPE"
+
+        /**
+         * Request to login user
+         */
+        const val REQUEST_TYPE_LOGIN = 0
+
+        /**
+         * Request to refresh the session token
+         */
+        const val REQUEST_TYPE_REFRESH_TOKEN = 1
 
         /**
          * This Method is called to initialize this Module.
@@ -24,7 +64,7 @@ class LoginLib {
          */
         fun init(application: Application) {
             FacebookSdk.sdkInitialize(application)
-            LibPrefData.setBoolean(application, LibPrefData.Key.IS_LIB_INITIALIZE, true)
+            PrefData.setBoolean(application, PrefData.Key.LIB_INITIALIZED, true)
         }
     }
 
@@ -92,7 +132,6 @@ class LoginLib {
         private var activity: Activity
         private var loginType: LoginType = LoginType.NAN
         private var loginListener: OnLoginListener? = null
-        private var infoList: ArrayList<String>
         private var permissionList: ArrayList<String>
 
         /**
@@ -101,7 +140,6 @@ class LoginLib {
          */
         constructor(activity: Activity) {
             this.activity = activity
-            infoList = ArrayList()
             permissionList = ArrayList()
         }
 
@@ -119,7 +157,6 @@ class LoginLib {
          * @param loginType
          */
         fun setLoginListener(loginListener: OnLoginListener): Builder {
-
             this.loginListener = loginListener
             return this
         }
@@ -135,52 +172,14 @@ class LoginLib {
         }
 
         /**
-         * Method to set the List of Info requested by the client
-         * @param loginInfoList
-         */
-        fun setInfoList(loginInfoList: List<String>): Builder {
-            this.infoList.clear()
-            this.infoList.addAll(loginInfoList)
-            return this
-        }
-
-        /**
          * Method to build the MKR Login
          * @throws Exception Caller must handel the exception
          */
         fun build(): LoginLib {
-            if (!LibPrefData.getBoolean(activity, LibPrefData.Key.IS_LIB_INITIALIZE)) {
+            if (!PrefData.getBoolean(activity, PrefData.Key.LIB_INITIALIZED)) {
                 throw Exception(Constants.ERROR_MESSAGE_LOGIN_LIB_NOT_INIT)
             }
-            return LoginLib(getLoginObject() ?: throw Exception(Constants.ERROR_MESSAGE_LOGIN_TYPE_NOT_SET))
-        }
-
-
-        /**
-         * Method to get the Login Object of the Class associate with the LoginType
-         */
-        private fun getLoginObject(): BaseLogin? {
-            when (loginType) {
-                LoginType.FACEBOOK -> {
-                    return FacebookLogin(activity, loginListener, permissionList, infoList)
-                }
-                LoginType.GOOGLE -> {
-                    return GoogleLogin(activity, loginListener, permissionList)
-                }
-            }
-            return null
+            return LoginLib(LoginControllerFactory.create(loginType, activity, loginListener, permissionList) ?: throw Exception(Constants.ERROR_MESSAGE_LOGIN_TYPE_NOT_SET))
         }
     }
-
-    // =============================================================================================
-    // =============================================================================================
-    // =============================================================================================
-    // =============================================================================================
-    // =============================================================================================
-    // =============================================================================================
-    // =============================================================================================
-    // =============================================================================================
-    // =============================================================================================
-    // =============================================================================================
-
 }

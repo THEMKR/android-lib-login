@@ -1,5 +1,7 @@
 package com.lory.library.login.enums
 
+import java.util.*
+
 /**
  * Contain the list of all the supported startLogin environment.
  * @param NAN NO LOGIN
@@ -7,7 +9,15 @@ package com.lory.library.login.enums
  * @param GAMIL When user initiate startLogin via G-Mail
  */
 enum class LoginType {
-    NAN, FACEBOOK, GOOGLE;
+    NAN(Arrays.asList()),
+    FACEBOOK(Arrays.asList("public_profile", "email")),
+    GOOGLE(Arrays.asList("profile", "email", "openid"));
+
+    var defaultPermissionList: List<String>
+
+    constructor(defaultPermissionList: List<String>) {
+        this.defaultPermissionList = defaultPermissionList
+    }
 
     companion object {
         /**

@@ -26,7 +26,7 @@ interface OnLoginListener {
 
     /**
      * Method to notify that access-token is successfully updated
-     * @param token Access token.[<ol><li>LoginType.FACEBOOK -> com.facebook.AccessToken</li><li>LoginType.GOOGLE -> com.facebook.AccessToken</li></ol>]
+     * @param token Access token.[<ol><li>LoginType.FACEBOOK -> com.facebook.AccessToken</li><li>LoginType.GOOGLE -> Through Exception</li></ol>]
      * @param loginType Env chosen for Login
      * @see LoginType
      */
