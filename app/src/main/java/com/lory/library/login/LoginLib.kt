@@ -19,46 +19,6 @@ import com.lory.library.login.utils.PrefData
 class LoginLib {
     companion object {
         /**
-         * In Result Intent this Key contain the Login Data if login become successful
-         */
-        const val EXTRA_LOGIN_DATA = "EXTRA_LOGIN_DATA"
-
-        /**
-         * In Result Intent this Key contain the Refreshed Access Token
-         */
-        const val EXTRA_REFRESHED_ACCESS_TOKEN = "EXTRA_REFRESHED_ACCESS_TOKEN"
-
-        /**
-         * In Result Intent this Key contain the Error Message
-         */
-        const val EXTRA_ERROR_MESSAGE = "EXTRA_ERROR_MESSAGE"
-
-        /**
-         * In Request Intent this Key contain the ArratList<String> of permission required by the caller App
-         */
-        const val EXTRA_PERMISSION_ARRAY_LIST = "EXTRA_PERMISSION_ARRAY_LIST"
-
-        /**
-         * In Request Intent this Key contain the If of LoginType. From which user initiate the Login process
-         */
-        const val EXTRA_LOGIN_PROVIDER = "EXTRA_REQUEST_TYPE"
-
-        /**
-         * In Request Intent this Key contain the Type of Action taken by user (LOGIN/REFRESH_TOKEN)
-         */
-        const val EXTRA_REQUEST_TYPE = "EXTRA_REQUEST_TYPE"
-
-        /**
-         * Request to login user
-         */
-        const val REQUEST_TYPE_LOGIN = 0
-
-        /**
-         * Request to refresh the session token
-         */
-        const val REQUEST_TYPE_REFRESH_TOKEN = 1
-
-        /**
          * This Method is called to initialize this Module.
          * user Must call this method from Application Class
          */
@@ -179,7 +139,14 @@ class LoginLib {
             if (!PrefData.getBoolean(activity, PrefData.Key.LIB_INITIALIZED)) {
                 throw Exception(Constants.ERROR_MESSAGE_LOGIN_LIB_NOT_INIT)
             }
-            return LoginLib(LoginControllerFactory.create(loginType, activity, loginListener, permissionList) ?: throw Exception(Constants.ERROR_MESSAGE_LOGIN_TYPE_NOT_SET))
+            if (loginType.equals(LoginType.NAN)) {
+                throw Exception(Constants.ERROR_MESSAGE_LOGIN_TYPE_NOT_SET)
+            }
+            if (permissionList.isEmpty()) {
+                permissionList.addAll(loginType.defaultPermissionList)
+            }
+            return LoginLib(LoginControllerFactory.create(loginType, activity, loginListener, permissionList)
+                    ?: throw Exception(Constants.ERROR_MESSAGE_LOGIN_TYPE_NOT_SET))
         }
     }
 }

@@ -1,37 +1,25 @@
-apply plugin: 'com.android.application'//apply plugin: 'com.android.library'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'com.github.dcendents.android-maven'
-group='com.github.MKR-WORLD'
-version = '1.0'
 
 android {
-    signingConfigs {
-        signkey {
-            keyAlias 'mkrliblogin'
-            keyPassword 'D@L@M@05021990'
-            storeFile file('../mkrliblogin.jks')
-            storePassword 'D@L@M@05021990'
-        }
-    }
-
     compileSdkVersion 28
+    lintOptions {
+        abortOnError false
+    }
     defaultConfig {
-        applicationId "com.mkrworld.mkrandroidliblogin"
         minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
     }
     buildTypes {
-        debug {
+        debug{
             minifyEnabled false
-            signingConfig signingConfigs.signkey
         }
 
         release {
             minifyEnabled false
-            signingConfig signingConfigs.signkey
         }
     }
 }
@@ -43,4 +31,3 @@ dependencies {
     implementation 'com.facebook.android:facebook-login:4.35.0'
     implementation 'com.google.android.gms:play-services-auth:15.0.1'
 }
-//apply plugin: 'com.google.gms.google-services'
