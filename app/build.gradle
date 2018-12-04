@@ -31,3 +31,5 @@ dependencies {
     implementation 'com.facebook.android:facebook-login:4.35.0'
     implementation 'com.google.android.gms:play-services-auth:15.0.1'
 }
+
+apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
