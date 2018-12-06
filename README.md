@@ -34,7 +34,7 @@
 #	APP Level Gradle
 		implementation 'com.lory.library:login:1.0.0'
         implementation 'com.facebook.android:facebook-login:4.35.0'
-        implementation 'com.google.android.gms:play-services-auth:15.0.1'
+        implementation 'com.google.android.gms:play-services-auth:16.0.1'
         
         
 #   USE
