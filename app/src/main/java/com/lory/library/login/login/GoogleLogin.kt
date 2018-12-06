@@ -59,13 +59,13 @@ internal class GoogleLogin : BaseLogin {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
         try {
-            val account: GoogleSignInAccount = task.getResult(ApiException::class.java)
+            val account: GoogleSignInAccount? = task.getResult(ApiException::class.java)
             var loginData = LoginData()
-            loginData.sessionToken = account.id ?: ""
-            loginData.name = account.displayName ?: ""
-            loginData.email = account.email ?: ""
+            loginData.sessionToken = account?.id ?: ""
+            loginData.name = account?.displayName ?: ""
+            loginData.email = account?.email ?: ""
             loginData.loginType = LoginType.GOOGLE
-            loginData.profilePicUrl = account.photoUrl.toString()
+            loginData.profilePicUrl = account?.photoUrl.toString()
             onLoginListener?.onLoginSuccessful(loginData, LoginType.GOOGLE)
         } catch (error: ApiException) {
             if ((error.message ?: "").trim().equals("13:")) {
