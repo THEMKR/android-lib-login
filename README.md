@@ -32,9 +32,12 @@
 		}
 
 #	APP Level Gradle
-		implementation 'com.lory.library:login:1.0.1'
+        <!-- DEPENDENCY INCLUDE IN LIB -->
         implementation 'com.facebook.android:facebook-login:4.35.0'
         implementation 'com.google.android.gms:play-services-auth:16.0.1'
+        
+        <!-- SUPPORT MUST BE INCLUDE -->   
+		implementation 'com.lory.library:login:1.0.1'
         
         
 #   USE
