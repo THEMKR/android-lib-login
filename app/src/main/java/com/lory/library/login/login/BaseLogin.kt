@@ -28,6 +28,11 @@ abstract class BaseLogin {
     abstract fun startLogin()
 
     /**
+     * Method to get the current Access Token
+     */
+    abstract fun getAccessToken(): Any?
+
+    /**
      * Method to refresh the current Access Token
      */
     abstract fun refreshAccessToken()

@@ -26,11 +26,11 @@ internal class FacebookLogin : BaseLogin {
         override fun onCompleted(json: JSONObject?, response: GraphResponse?) {
             if (json != null && response != null) {
                 var loginData = LoginData()
-                loginData.sessionToken = json.optString("id")
+                loginData.id = json.optString("id")
                 loginData.name = json.optString("name")
                 loginData.email = json.optString("email")
                 loginData.loginType = LoginType.FACEBOOK
-                loginData.profilePicUrl = "http://graph.facebook.com/${loginData.sessionToken}/picture?type=large"
+                loginData.profilePicUrl = "http://graph.facebook.com/${loginData.id}/picture?type=large"
                 onLoginListener?.onLoginSuccessful(loginData, LoginType.FACEBOOK)
             } else {
                 val message = response?.error?.errorMessage ?: Constants.ERROR_MESSAGE_MISCELLANEOUS
@@ -86,6 +86,10 @@ internal class FacebookLogin : BaseLogin {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         callbackManager.onActivityResult(requestCode, resultCode, data)
+    }
+
+    override fun getAccessToken(): Any? {
+        return accessToken
     }
 
     override fun refreshAccessToken() {

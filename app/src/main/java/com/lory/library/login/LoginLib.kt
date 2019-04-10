@@ -55,10 +55,17 @@ class LoginLib {
     }
 
     /**
-     * Method to refresh access Token
+     * Method to refresh access Token. Without successful login dnt call this method
      */
     fun refreshAccessToken() {
         baseLogin.refreshAccessToken()
+    }
+
+    /**
+     * Method to get access Token. Without successful login dnt call this method.[<ul><li>FACEBOOK : AccessToken</li><li>GMAIL : String</li></ul>]
+     */
+    fun getAccessToken() {
+        baseLogin.getAccessToken()
     }
 
     /**

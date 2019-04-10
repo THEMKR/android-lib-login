@@ -9,7 +9,7 @@ class LoginData : Parcelable {
     /**
      * Unique Id of user define by Login Env
      */
-    var sessionToken: String = ""
+    var id: String = ""
 
     /**
      * User Name
@@ -51,7 +51,7 @@ class LoginData : Parcelable {
     var loginType: LoginType = LoginType.NAN
 
     constructor(parcel: Parcel) {
-        sessionToken = parcel.readString()
+        id = parcel.readString()
         name = parcel.readString()
         email = parcel.readString()
         profilePicUrl = parcel.readString()
@@ -62,7 +62,7 @@ class LoginData : Parcelable {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(sessionToken)
+        parcel.writeString(id)
         parcel.writeString(name)
         parcel.writeString(email)
         parcel.writeString(profilePicUrl)
@@ -74,7 +74,7 @@ class LoginData : Parcelable {
     }
 
     override fun toString(): String {
-        return "${super.toString()} TOKEN:$sessionToken, NAME:$name, EMAIL:$email, PROFILE-PIC:$profilePicUrl, LOGIN-TYPE:${loginType.name}"
+        return "${super.toString()} TOKEN:$id, NAME:$name, EMAIL:$email, PROFILE-PIC:$profilePicUrl, LOGIN-TYPE:${loginType.name}"
     }
 
     companion object CREATOR : Parcelable.Creator<LoginData> {

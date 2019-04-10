@@ -9,7 +9,9 @@ class PrefData {
      *Preference Keys
      */
     enum class Key {
-        LIB_INITIALIZED("LIB_INITIALIZED", false);
+        LIB_INITIALIZED("LIB_INITIALIZED", false),
+        TEMP_GMAIL_TOKEN("TEMP_GMAIL_TOKEN", "");
+
         val key: String
         val defaultValue: Any
 
