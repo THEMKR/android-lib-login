@@ -70,7 +70,7 @@ class PrefData {
          */
         fun getString(context: Context, key: Key): String {
             try {
-                return getShearedPreference(context).getString(key.key, key.defaultValue as String?)
+                return getShearedPreference(context).getString(key.key, key.defaultValue as String?) ?: ""
             } catch (e: Exception) {
                 return ""
             }

@@ -22,18 +22,17 @@
 
 #	Project Level Gradle
 		repositories {
-			maven {
-				url "https://api.bitbucket.org/1.0/repositories/THEMKR/android-libs/raw/releases"
-			}
+			maven { url 'https://jitpack.io' }
 		}
 
 #	APP Level Gradle
+
+            implementation 'com.github.THEMKR:android-lib-login:1.0.0'
+
         <!-- DEPENDENCY INCLUDE IN LIB -->
-        implementation 'com.facebook.android:facebook-login:4.35.0'
-        implementation 'com.google.android.gms:play-services-auth:16.0.1'
-        
-        <!-- SUPPORT MUST BE INCLUDE -->   
-		implementation 'com.lory.library:login:1.0.1'
+        implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+        implementation 'com.facebook.android:facebook-login:5.0.0'
+        implementation 'com.google.android.gms:play-services-auth:17.0.0'
         
         
 #   USE

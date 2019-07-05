@@ -51,10 +51,10 @@ class LoginData : Parcelable {
     var loginType: LoginType = LoginType.NAN
 
     constructor(parcel: Parcel) {
-        id = parcel.readString()
-        name = parcel.readString()
-        email = parcel.readString()
-        profilePicUrl = parcel.readString()
+        id = parcel.readString() ?: ""
+        name = parcel.readString() ?: ""
+        email = parcel.readString() ?: ""
+        profilePicUrl = parcel.readString() ?: ""
         loginType = LoginType.getLoginType(parcel.readInt())
     }
 
